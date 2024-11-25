@@ -1,20 +1,9 @@
 package ee.ivkhkdev.SpringBootTest.interfaces;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public interface AppRepository<T> {
+@Repository
+public interface AppRepository<T> extends JpaRepository<T, Long> {
 
-    default boolean save(T t) {
-        List<T> ts = load();
-        ts.add(t);
-        return saveAll(ts);
-    }
-
-    default boolean saveAll(List<T> ts) {
-        return true;
-    }
-
-    default List<T> load() {
-        return List.of();
-    }
 }
